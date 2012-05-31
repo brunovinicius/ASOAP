@@ -1,0 +1,49 @@
+<project name="asoap" basedir="." default="jar">
+
+	<property name="project.name" value="asoap" />
+	<property name="lib.dir" value="lib" />
+	<property name="src.dir" value="src" />
+	<property name="build.dir" value="bin" />
+	<property name="dest.dir" value="dest" />
+	<property name="report.dir"  value="${build.dir}/junitreport"/>
+
+	<path id="classpath">
+        <fileset dir="${lib.dir}" includes="**/*.jar"/>
+    </path>
+
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+    </target>
+
+    <target name="compile" depends="clean">
+        <mkdir dir="${build.dir}"/>
+        <javac srcdir="${src.dir}" destdir="${build.dir}" classpathref="classpath" />
+    </target>
+
+    <target name="jar" depends="compile">
+        <mkdir dir="${dest.dir}"/>
+        <jar destfile="${dest.dir}/${project.name}.jar" basedir="${build.dir}" excludes="test/**" />
+    </target>
+	
+	<target name="junit" depends="jar">
+        <mkdir dir="${report.dir}"/>
+        <junit printSummary="yes" showOutput="true">
+            <classpath>
+				<path refid="classpath"/>
+				<pathelement path="${build.dir}"/>
+            </classpath>
+            <formatter type="xml"/>
+            <batchtest fork="yes" todir="${report.dir}">
+                <fileset dir="${src.dir}" includes="**/*Test*.java"/>
+            </batchtest>
+        </junit>
+    </target>
+    
+    <target name="junitreport">
+        <junitreport todir="${report.dir}">
+            <fileset dir="${report.dir}" includes="TEST-*.xml"/>
+            <report todir="${report.dir}"/>
+        </junitreport>
+    </target>
+
+</project>
