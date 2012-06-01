@@ -1,4 +1,4 @@
-package google.code.asoap.util;
+package org.asoap.util;
 
 public class Log {
 	

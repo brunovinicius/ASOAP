@@ -1,12 +1,12 @@
-package google.code.asoap.serializable;
+package org.asoap.serializable;
 
-import google.code.asoap.util.CacheRepository;
-import google.code.asoap.util.CacheRepository.ClassData;
-import google.code.asoap.util.CacheRepository.FieldData;
 
 import java.util.Hashtable;
 import java.util.List;
 
+import org.asoap.util.CacheRepository;
+import org.asoap.util.CacheRepository.ClassData;
+import org.asoap.util.CacheRepository.FieldData;
 import org.ksoap2.serialization.KvmSerializable;
 import org.ksoap2.serialization.PropertyInfo;
 

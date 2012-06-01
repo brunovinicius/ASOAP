@@ -1,4 +1,4 @@
-package google.code.asoap.parser;
+package org.asoap.parser;
 
 import java.util.ArrayList;
 import java.util.List;

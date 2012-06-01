@@ -1,12 +1,12 @@
-package google.code.asoap.parser;
+package org.asoap.parser;
 
-import google.code.asoap.util.Log;
-import google.code.asoap.util.CacheRepository;
-import google.code.asoap.util.CacheRepository.FieldData;
 
 import java.lang.reflect.Field;
 import java.util.List;
 
+import org.asoap.util.CacheRepository;
+import org.asoap.util.Log;
+import org.asoap.util.CacheRepository.FieldData;
 import org.ksoap2.serialization.AttributeContainer;
 import org.ksoap2.serialization.SoapObject;
 

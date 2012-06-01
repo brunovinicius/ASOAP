@@ -1,14 +1,15 @@
-package google.code.asoap.integration;
+package org.asoap.integration;
 
-import google.code.asoap.Caller;
-import google.code.asoap.annotation.SOAPServiceOperation;
-import google.code.asoap.util.CacheRepository;
-import google.code.asoap.util.CacheRepository.ServiceData;
-import google.code.asoap.util.CacheRepository.OperationData;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.util.LinkedHashMap;
+
+import org.asoap.Caller;
+import org.asoap.annotation.SOAPServiceOperation;
+import org.asoap.util.CacheRepository;
+import org.asoap.util.CacheRepository.OperationData;
+import org.asoap.util.CacheRepository.ServiceData;
 
 public final class ServiceInvocationHandler implements InvocationHandler {
 	

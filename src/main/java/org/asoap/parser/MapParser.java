@@ -1,4 +1,4 @@
-package google.code.asoap.parser;
+package org.asoap.parser;
 
 import java.util.HashMap;
 import java.util.Map;

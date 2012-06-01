@@ -1,12 +1,13 @@
-package google.code.asoap.annotation;
+package org.asoap.annotation;
 
-import google.code.asoap.parser.NullParser;
-import google.code.asoap.parser.Parser;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+
+import org.asoap.parser.NullParser;
+import org.asoap.parser.Parser;
 
 @Target (ElementType.METHOD)  
 @Retention(RetentionPolicy.RUNTIME)

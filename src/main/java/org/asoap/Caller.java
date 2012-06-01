@@ -1,15 +1,15 @@
-package google.code.asoap;
+package org.asoap;
 
-import google.code.asoap.annotation.SOAPObject;
-import google.code.asoap.annotation.SOAPProperty;
-import google.code.asoap.parser.Parser;
-import google.code.asoap.serializable.Wrapper;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 
+import org.asoap.annotation.SOAPObject;
+import org.asoap.annotation.SOAPProperty;
+import org.asoap.parser.Parser;
+import org.asoap.serializable.Wrapper;
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.SoapFault;
 import org.ksoap2.serialization.AttributeContainer;

@@ -1,4 +1,4 @@
-package google.code.asoap.parser;
+package org.asoap.parser;
 
 import org.kobjects.base64.Base64;
 import org.ksoap2.serialization.AttributeContainer;

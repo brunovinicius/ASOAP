@@ -1,4 +1,4 @@
-package google.code.asoap.parser;
+package org.asoap.parser;
 
 import java.lang.reflect.Array;
 

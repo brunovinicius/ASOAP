@@ -1,8 +1,8 @@
-package google.code.asoap.parser;
+package org.asoap.parser;
 
 import org.ksoap2.serialization.AttributeContainer;
 
-public class VoidParser implements Parser {
+public class NullParser implements Parser {
 
 	@Override
 	public Object parse(AttributeContainer container) {

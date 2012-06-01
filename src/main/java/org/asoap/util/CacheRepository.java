@@ -1,18 +1,5 @@
-package google.code.asoap.util;
+package org.asoap.util;
 
-import google.code.asoap.annotation.SOAPObject;
-import google.code.asoap.annotation.SOAPProperty;
-import google.code.asoap.annotation.SOAPService;
-import google.code.asoap.annotation.SOAPServiceOperation;
-import google.code.asoap.parser.ArrayParser;
-import google.code.asoap.parser.ByteArrayParser;
-import google.code.asoap.parser.ComplexTypeParser;
-import google.code.asoap.parser.ListParser;
-import google.code.asoap.parser.MapParser;
-import google.code.asoap.parser.NullParser;
-import google.code.asoap.parser.Parser;
-import google.code.asoap.parser.PrimitiveParser;
-import google.code.asoap.parser.VoidParser;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -24,6 +11,20 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.asoap.annotation.SOAPObject;
+import org.asoap.annotation.SOAPProperty;
+import org.asoap.annotation.SOAPService;
+import org.asoap.annotation.SOAPServiceOperation;
+import org.asoap.parser.ArrayParser;
+import org.asoap.parser.ByteArrayParser;
+import org.asoap.parser.ComplexTypeParser;
+import org.asoap.parser.ListParser;
+import org.asoap.parser.MapParser;
+import org.asoap.parser.NullParser;
+import org.asoap.parser.Parser;
+import org.asoap.parser.PrimitiveParser;
+import org.asoap.parser.VoidParser;
 
 public class CacheRepository {
 

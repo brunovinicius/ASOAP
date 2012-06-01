@@ -1,10 +1,11 @@
-package google.code.asoap.integration;
+package org.asoap.integration;
 
-import google.code.asoap.util.CacheRepository;
 
 import java.lang.reflect.Proxy;
 import java.net.MalformedURLException;
 import java.net.URL;
+
+import org.asoap.util.CacheRepository;
 
 /**
  * Class used to create instance of remote service proxies based on given interfaces.
