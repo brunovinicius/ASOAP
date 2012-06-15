@@ -1,7 +1,7 @@
-package test.google.code.asoap;
+package org.asoap;
 
-import google.code.asoap.annotation.SOAPService;
-import google.code.asoap.annotation.SOAPServiceOperation;
+import org.asoap.annotation.SOAPService;
+import org.asoap.annotation.SOAPServiceOperation;
 
 @SOAPService(namespace="http://xomnium.mauell.org", 
 			 serverUrl="http://192.168.10.108:8732", 

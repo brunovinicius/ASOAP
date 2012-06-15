@@ -1,9 +1,10 @@
-package test.google.code.asoap;
+package org.asoap;
 
-import google.code.asoap.annotation.SOAPObject;
-import google.code.asoap.annotation.SOAPProperty;
 
 import java.io.Serializable;
+
+import org.asoap.annotation.SOAPObject;
+import org.asoap.annotation.SOAPProperty;
 
 @SOAPObject
 public class DummyObject implements Serializable {
