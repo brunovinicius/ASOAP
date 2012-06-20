@@ -10,6 +10,7 @@ import org.asoap.annotation.SOAPProperty;
 import org.asoap.parser.Parser;
 import org.asoap.serializable.Wrapper;
 import org.asoap.util.DateMarshal;
+import org.asoap.util.Strings;
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.SoapFault;
 import org.ksoap2.serialization.AttributeContainer;
@@ -182,7 +183,15 @@ public class Caller<T> {
 					"Invalid method configuration: make sure you setup all needed data for calling a SoapMethod");
 		}
 
-		String soapMethod = namespace + URL_SEPARATOR + serviceInterface + URL_SEPARATOR + method;
+		String soapMethod = null;
+
+		if (!Strings.isEmpty(serviceInterface)) {
+			soapMethod = Strings.removeLastBackslashIfExists(namespace) + URL_SEPARATOR + serviceInterface
+					+ URL_SEPARATOR + method;
+		} else {
+			soapMethod = Strings.removeLastBackslashIfExists(namespace) + URL_SEPARATOR + method;
+		}
+
 		SoapObject request = new SoapObject(namespace, method);
 
 		if (params != null) {
