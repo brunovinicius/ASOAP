@@ -1,7 +1,7 @@
 package org.asoap;
 
-
 import java.io.Serializable;
+import java.util.Date;
 
 import org.asoap.annotation.SOAPObject;
 import org.asoap.annotation.SOAPProperty;
@@ -11,18 +11,21 @@ public class DummyObject implements Serializable {
 
 	private static final long serialVersionUID = 841070159684621033L;
 
-	@SOAPProperty(name="HorizontalFormation")
+	@SOAPProperty(name = "HorizontalFormation")
 	private int horizontalFormation;
 
-	@SOAPProperty(name="VerticalFormation")
+	@SOAPProperty(name = "VerticalFormation")
 	private int verticalFormation;
-	
-	@SOAPProperty(name="ResolutionHeight")
+
+	@SOAPProperty(name = "ResolutionHeight")
 	private int resolutionHeight;
 
-	@SOAPProperty(name="ResolutionWidth")
+	@SOAPProperty(name = "ResolutionWidth")
 	private int resolutionWidth;
-	
+
+	@SOAPProperty(name = "BirthDate")
+	private Date birthDate;
+
 	public int getHorizontalFormation() {
 		return horizontalFormation;
 	}
@@ -54,12 +57,20 @@ public class DummyObject implements Serializable {
 	public void setResolutionWidth(int resolutionWidth) {
 		this.resolutionWidth = resolutionWidth;
 	}
-	
+
 	public int getWallResolutionWidth() {
-		return resolutionWidth * horizontalFormation;		
+		return resolutionWidth * horizontalFormation;
 	}
-	
+
 	public int getWallResolutionHeight() {
-		return resolutionHeight * verticalFormation;		
+		return resolutionHeight * verticalFormation;
+	}
+
+	public Date getBirthDate() {
+		return birthDate;
+	}
+
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
 	}
 }

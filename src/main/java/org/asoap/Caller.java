@@ -1,6 +1,5 @@
 package org.asoap;
 
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.LinkedHashMap;
@@ -10,6 +9,7 @@ import org.asoap.annotation.SOAPObject;
 import org.asoap.annotation.SOAPProperty;
 import org.asoap.parser.Parser;
 import org.asoap.serializable.Wrapper;
+import org.asoap.util.DateMarshal;
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.SoapFault;
 import org.ksoap2.serialization.AttributeContainer;
@@ -23,7 +23,7 @@ import org.xmlpull.v1.XmlPullParserException;
 public class Caller<T> {
 	private static final char URL_SEPARATOR = '/';
 	private static final char INTERFACE_PREFIX = 'I';
-	
+
 	private URL serverUrl;
 	private String namespace;
 	private String method;
@@ -32,7 +32,7 @@ public class Caller<T> {
 	private LinkedList<Mapping> mappings;
 	private LinkedHashMap<String, Object> params;
 	private Parser responseParser;
-	
+
 	/**
 	 * Default constructor for this class.
 	 */
@@ -121,7 +121,7 @@ public class Caller<T> {
 			Object value = params.get(key);
 			addParameter(key, value);
 		}
-		
+
 		return this;
 	}
 
@@ -143,16 +143,16 @@ public class Caller<T> {
 	 */
 	public Caller<T> addParameter(String name, Object value) {
 		this.params.put(name, value);
-		
-		Class<?> type = value.getClass(); 
+
+		Class<?> type = value.getClass();
 		SOAPObject soapObjectAnnotation = type.getAnnotation(SOAPObject.class);
-		
+
 		if (soapObjectAnnotation != null) {
 			String typeId = soapObjectAnnotation.typeId();
 			String namespace = soapObjectAnnotation.namespace();
 			addMapping(type, typeId, namespace);
 		}
-		
+
 		return this;
 	}
 
@@ -178,16 +178,17 @@ public class Caller<T> {
 	@SuppressWarnings("unchecked")
 	public T call() throws IllegalStateException, IOException, XmlPullParserException, SoapFault {
 		if (!isReadyForCall()) {
-			throw new IllegalStateException("Invalid method configuration: make sure you setup all needed data for calling a SoapMethod");
+			throw new IllegalStateException(
+					"Invalid method configuration: make sure you setup all needed data for calling a SoapMethod");
 		}
 
 		String soapMethod = namespace + URL_SEPARATOR + serviceInterface + URL_SEPARATOR + method;
 		SoapObject request = new SoapObject(namespace, method);
-		
+
 		if (params != null) {
 			for (String key : params.keySet()) {
 				Object value = params.get(key);
-				
+
 				PropertyInfo pi = new PropertyInfo();
 				pi.name = key;
 				pi.setType(value.getClass());
@@ -202,36 +203,37 @@ public class Caller<T> {
 				} else { // otherwise, we shall consider this a primitive value
 					pi.setValue(new SoapPrimitive(namespace, key, value.toString()));
 				}
-				
+
 				request.addProperty(pi);
 			}
 		}
-	
+
 		SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
 		envelope.dotNet = true;
 		envelope.setOutputSoapObject(request);
 
+		// Lets serialize Date objects.
+		DateMarshal dateMarshal = new DateMarshal();
+		dateMarshal.register(envelope);
+
 		for (Mapping mapping : mappings) {
-			envelope.addMapping(mapping.namespace, mapping.typeId, mapping.type);			
+			envelope.addMapping(mapping.namespace, mapping.typeId, mapping.type);
 		}
-		
+
 		HttpTransportSE httpTransport = new HttpTransportSE(serverUrl.toString() + URL_SEPARATOR + service);
 		httpTransport.call(soapMethod, envelope);
 		AttributeContainer response = (AttributeContainer) envelope.getResponse();
-		
+
 		if (responseParser != null)
-			return (T)responseParser.parse(response);
-		
+			return (T) responseParser.parse(response);
+
 		return null;
 	}
-	
+
 	private boolean isReadyForCall() {
-		return serverUrl != null 
-				&& namespace != null
-				&& service != null
-				&& serviceInterface != null;
+		return serverUrl != null && namespace != null && service != null && serviceInterface != null;
 	}
-	
+
 	private Mapping hasMapping(Class<?> klass) {
 		for (Mapping mapping : mappings) {
 			if (mapping.type == klass) {
@@ -240,14 +242,14 @@ public class Caller<T> {
 		}
 		return null;
 	}
-	
+
 	private Caller<T> addMapping(Class<?> type, String typeId, String namespace) {
 		this.mappings.add(new Mapping(type, typeId, namespace));
 		return this;
 	}
-	
+
 	private static class Mapping {
-		
+
 		private Class<?> type;
 		private String typeId;
 		private String namespace;

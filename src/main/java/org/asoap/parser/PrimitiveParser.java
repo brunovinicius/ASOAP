@@ -1,5 +1,8 @@
 package org.asoap.parser;
 
+import java.util.Date;
+
+import org.kobjects.isodate.IsoDate;
 import org.ksoap2.serialization.AttributeContainer;
 import org.ksoap2.serialization.SoapPrimitive;
 
@@ -10,13 +13,13 @@ public class PrimitiveParser implements Parser {
 	public PrimitiveParser(Class<?> type) {
 		this.type = type;
 	}
-	
+
 	public Object parse(AttributeContainer container) {
 		Object value = null;
-		
-		if(container instanceof SoapPrimitive) { // if instance of soap object return null
+
+		if (container instanceof SoapPrimitive) { // if instance of soap object return null
 			String primitive = container.toString();
-			
+
 			if (type == String.class) {
 				value = primitive;
 			} else if (type == Boolean.class || type == boolean.class) {
@@ -31,11 +34,13 @@ public class PrimitiveParser implements Parser {
 				value = Long.parseLong(primitive);
 			} else if (type == Float.class || type == float.class) {
 				value = Float.parseFloat(primitive);
-			} else if (type == Double.class  || type == double.class) {
+			} else if (type == Double.class || type == double.class) {
 				value = Double.parseDouble(primitive);
+			} else if (type == Date.class) {
+				value = IsoDate.stringToDate(primitive, IsoDate.DATE_TIME);
 			}
 		}
-		
+
 		return value;
 	}
 
