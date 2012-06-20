@@ -8,6 +8,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -218,6 +219,7 @@ public class CacheRepository {
 				|| clazz == float.class
 				|| clazz == Float.class
 				|| clazz == double.class
+				|| clazz == Date.class
 				|| clazz == Double.class;
 	}
 

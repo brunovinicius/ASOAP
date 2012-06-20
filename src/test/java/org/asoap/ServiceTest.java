@@ -1,11 +1,11 @@
-package test.google.code.asoap;
+package org.asoap;
 
 import static org.junit.Assert.*;
-import google.code.asoap.integration.ServiceFactory;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import org.asoap.integration.ServiceFactory;
 import org.junit.Before;
 import org.junit.Test;
 
